@@ -1,4 +1,5 @@
 import {
+  useGetAreasQuery,
   useGetCitiesByAreaQuery,
   useGetWarehousesByCityQuery,
 } from "@/common/api";
@@ -7,7 +8,6 @@ import { IAreaModel, ICityModel, IWarehouse } from "@/common/types";
 import { Select } from "@/ui-liberty/inputs";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useAddressStore } from "../../store";
 import { IOrderFormField } from "../../types";
 import { Grid, Wrapper } from "./styles";
 
@@ -17,24 +17,22 @@ const Address = () => {
     formState: { errors },
   } = useFormContext<IOrderFormField>();
 
-  const areas = useAddressStore.useAreas();
   const [currentArea, setCurrentArea] = useState<string>("");
   const [currentCity, setCurrentCity] = useState<string>("");
 
+  const { data: areas } = useGetAreasQuery();
   const { data: cities } = useGetCitiesByAreaQuery(!!currentArea, currentArea);
   const { data: warehouses } = useGetWarehousesByCityQuery(
     !!currentCity,
     currentCity
   );
 
-  const onChangeCity = () => {};
-
   return (
     <Wrapper>
       <Grid>
         <Select
           options={redoArrayInOptions<IAreaModel>({
-            array: areas,
+            array: areas || [],
             idFieldName: "Ref",
             valueFieldName: "Description",
             labelFieldName: "Description",

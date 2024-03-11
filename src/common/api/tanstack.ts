@@ -1,7 +1,7 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
-import { axiosInstance } from ".";
+import { axiosNovaInstance } from ".";
 import { QueryKey } from "../enums";
-import { ICityModel, IWarehouse } from "../types";
+import { IAreaModel, ICityModel, IWarehouse } from "../types";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -13,6 +13,36 @@ export const queryClient = new QueryClient({
   },
 });
 
+export const useGetAreasQuery = () => {
+  return useQuery<IAreaModel[]>({
+    staleTime: 60000,
+    refetchOnMount: false,
+    queryKey: [QueryKey.AREAS],
+    queryFn: async () => {
+      const response = await axiosNovaInstance.post("/", {
+        apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
+        modelName: "Address",
+        calledMethod: "getAreas",
+        methodProperties: {},
+      });
+
+      if (response.status === 200) {
+        const data = response.data;
+        if (data.success) {
+          const cities = data.data;
+          return cities;
+        } else {
+          console.error("Error:", data.errors);
+          return [];
+        }
+      } else {
+        console.error("Request failed with status code:", response.status);
+        return [];
+      }
+    },
+  });
+};
+
 export const useGetCitiesByAreaQuery = (enabled: boolean, refArea: string) => {
   return useQuery<ICityModel[]>({
     enabled,
@@ -20,8 +50,8 @@ export const useGetCitiesByAreaQuery = (enabled: boolean, refArea: string) => {
     refetchOnMount: false,
     queryKey: [QueryKey.REGIONS, refArea],
     queryFn: async () => {
-      const response = await axiosInstance.post("/", {
-        apiKey: process.env.NEXT_PUBLIC_NOVA_POSHTA_API,
+      const response = await axiosNovaInstance.post("/", {
+        apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
         modelName: "Address",
         calledMethod: "getCities",
         methodProperties: {
@@ -56,8 +86,8 @@ export const useGetWarehousesByCityQuery = (
     refetchOnMount: false,
     queryKey: [QueryKey.CITY, refCity],
     queryFn: async () => {
-      const response = await axiosInstance.post("/", {
-        apiKey: process.env.NEXT_PUBLIC_NOVA_POSHTA_API,
+      const response = await axiosNovaInstance.post("/", {
+        apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
         modelName: "Address",
         calledMethod: "getWarehouses",
         methodProperties: {

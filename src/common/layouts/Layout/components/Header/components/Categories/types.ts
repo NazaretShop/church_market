@@ -1,9 +1,9 @@
-import { ICategoryModel, IOpenable } from "@/common/types";
+import { ICategoryModelSecond, IOpenable } from "@/common/types";
 
 export interface ICategoriesProps extends IOpenable {
   isDarken: boolean;
   onClose: () => void;
-  categories: ICategoryModel[];
+  categories: ICategoryModelSecond[];
 }
 
 export interface IColorProps {

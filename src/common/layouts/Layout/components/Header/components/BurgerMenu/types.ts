@@ -1,4 +1,4 @@
-import { ICategoryModel, IOpenable } from "@/common/types";
+import { ICategoryModelSecond, IOpenable } from "@/common/types";
 import { Dispatch, SetStateAction } from "react";
 
 export interface IDarkenProps {
@@ -7,5 +7,5 @@ export interface IDarkenProps {
 
 export interface IBurgerMenuProps extends IOpenable, IDarkenProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
-  categories: ICategoryModel[];
+  categories: ICategoryModelSecond[];
 }

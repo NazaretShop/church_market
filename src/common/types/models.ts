@@ -67,6 +67,11 @@ export interface ICategoryModel {
   };
 }
 
+export interface ICategoryModelSecond {
+  id: string;
+  name: string;
+}
+
 export interface IAreaModel {
   Ref: string;
   AreasCenter: string;

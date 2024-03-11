@@ -1,4 +1,4 @@
-import { ICategoryModel } from "@/common/types";
+import { ICategoryModelSecond } from "@/common/types";
 
 export interface IHeaderWrapperProps {
   isDarken: boolean;
@@ -6,6 +6,6 @@ export interface IHeaderWrapperProps {
 }
 
 export interface IHeaderProps {
-  categories: ICategoryModel[];
+  categories: ICategoryModelSecond[];
   isDarken: boolean;
 }

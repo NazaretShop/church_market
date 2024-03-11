@@ -1,13 +1,17 @@
 import axios, { AxiosError } from "axios";
 
-export const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_NOVA_POSHTA_URL,
+export const axiosNovaInstance = axios.create({
+  baseURL: process.env.REACT_APP_NOVA_POSHTA_URL,
+});
+
+export const axiosBaseInstance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export async function getAreas() {
   try {
-    const response = await axiosInstance.post("/", {
-      apiKey: process.env.NEXT_PUBLIC_NOVA_POSHTA_API,
+    const response = await axiosNovaInstance.post("/", {
+      apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
       modelName: "Address",
       calledMethod: "getAreas",
       methodProperties: {},
@@ -32,8 +36,8 @@ export async function getAreas() {
 
 export async function getCities() {
   try {
-    const response = await axiosInstance.post("/", {
-      apiKey: process.env.NEXT_PUBLIC_NOVA_POSHTA_API,
+    const response = await axiosNovaInstance.post("/", {
+      apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
       modelName: "Address",
       calledMethod: "getCities",
       methodProperties: {},
@@ -58,8 +62,8 @@ export async function getCities() {
 
 export async function getWarehouses() {
   try {
-    const response = await axiosInstance.post("/", {
-      apiKey: process.env.NEXT_PUBLIC_NOVA_POSHTA_API,
+    const response = await axiosNovaInstance.post("/", {
+      apiKey: process.env.REACT_APP_NOVA_POSHTA_API,
       modelName: "Address",
       calledMethod: "getWarehouses",
       methodProperties: {},

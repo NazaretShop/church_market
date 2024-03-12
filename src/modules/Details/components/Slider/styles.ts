@@ -99,6 +99,13 @@ export const ImageItem = styled.img`
   object-fit: contain;
 `;
 
+export const ImageItemLoader = styled.div`
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0ff;
+  ${({ theme }) => theme.animation.shine};
+`;
+
 export const VideoItem = styled.video`
   height: 100%;
   width: 100%;
@@ -109,4 +116,15 @@ export const PreviewImage = styled.img`
   flex: 1 1 auto;
   width: 100%;
   height: 100%;
+`;
+
+export const PreviewImageLoader = styled.div`
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0ff;
+  ${({ theme }) => theme.animation.shine};
+  @media screen and (max-width: 767px) {
+    height: 400px;
+  }
 `;

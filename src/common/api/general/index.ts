@@ -28,7 +28,7 @@ export const useGetNewProductsQuery = () => {
     refetchOnMount: false,
     queryKey: [QueryKey.NEW_PRODUCTS],
     queryFn: async () => {
-      const response = await axiosBaseInstance.get("/product");
+      const response = await axiosBaseInstance.get("/product?per_page=10");
 
       if (response.status === 200) {
         const products = response.data;

@@ -1,14 +1,41 @@
 import { useGetSingleProductQuery } from "@/common/api/general";
 import { useParams } from "react-router-dom";
-import { Information, Slider } from "./components";
-import { Content, Description, Text, Title, Wrapper } from "./styles";
+import { Information, Slider, SliderLoader } from "./components";
+import {
+  Content,
+  Description,
+  InformationLoader,
+  Text,
+  TextLoader,
+  Title,
+  TitleLoader,
+  Wrapper,
+} from "./styles";
 
 const Details = () => {
   const { id } = useParams();
-  const { data: product } = useGetSingleProductQuery(id);
-  if (!product) {
-    return null;
+  const { data: product, isLoading } = useGetSingleProductQuery(id);
+
+  if (!product && !isLoading) {
+    return <Wrapper />;
   }
+
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Content>
+          <SliderLoader />
+          <InformationLoader />
+        </Content>
+        <Description>
+          <hr />
+          <TitleLoader />
+          <TextLoader />
+        </Description>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
       <Content>

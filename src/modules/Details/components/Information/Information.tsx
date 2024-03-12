@@ -14,7 +14,7 @@ import {
   Wrapper,
 } from "./styles";
 
-const Information: FC<IProductModelSecond> = ({
+const Information: FC<Partial<IProductModelSecond>> = ({
   product_name,
   product_price,
   product_parameters,
@@ -74,7 +74,7 @@ const Information: FC<IProductModelSecond> = ({
       </BasketAction>
       <Category>
         <b>Категорія: </b>
-        <span>{product_category[0].post_title}</span>
+        <span>{product_category?.[0]?.post_title}</span>
       </Category>
     </Wrapper>
   );

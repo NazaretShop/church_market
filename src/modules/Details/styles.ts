@@ -28,6 +28,19 @@ export const Text = styled.div`
   }
 `;
 
+export const TextLoader = styled(Text)`
+  ${({ theme }) => theme.animation.shine};
+  background-color: #f0f0f0ff;
+  height: 300px;
+`;
+
+export const InformationLoader = styled.div`
+  ${({ theme }) => theme.animation.shine};
+  width: 100%;
+  background-color: #f0f0f0ff;
+  height: 360px;
+`;
+
 export const Title = styled.span`
   color: ${({ theme }) => theme.colors.root};
   font-weight: 400;
@@ -36,6 +49,12 @@ export const Title = styled.span`
   display: block;
   word-wrap: break-word;
   line-height: 1.4;
+`;
+
+export const TitleLoader = styled(Title)`
+  ${({ theme }) => theme.animation.shine};
+  background-color: #f0f0f0ff;
+  height: 34px;
 `;
 
 export const Content = styled.div`

@@ -32,7 +32,7 @@ const Banner = () => {
       <Swiper
         slidesPerView={1}
         loop={true}
-        speed={1300}
+        speed={600}
         autoplay={{
           delay: 10000,
         }}

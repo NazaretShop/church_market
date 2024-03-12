@@ -33,15 +33,15 @@ const Categories: FC<ICategoriesProps> = ({
 
   const renderItems = () => {
     return categories?.map((category) => {
-      const isActive = currentCategory === category.name;
+      const isActive = currentCategory === category.title.rendered;
       return (
         <Item
           isDarken={isDarken}
           key={category.id}
           isActive={isActive}
-          onClick={() => handlerRedirect(isActive, category.name)}
+          onClick={() => handlerRedirect(isActive, category.title.rendered)}
         >
-          <span>{category.name}</span>
+          <span>{category.title.rendered}</span>
         </Item>
       );
     });

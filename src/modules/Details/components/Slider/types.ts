@@ -1,5 +1,5 @@
-import { IFileUploadedModel } from "@/common/types";
+import { IFileUploadedModelSecond } from "@/common/types";
 
 export interface ISliderImages {
-  images: IFileUploadedModel[];
+  images: IFileUploadedModelSecond[];
 }

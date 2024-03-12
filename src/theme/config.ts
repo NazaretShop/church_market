@@ -76,4 +76,37 @@ export const themeConfig: IConfigProps = {
       position: relative;
     `,
   },
+  animation: {
+    shine: `
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(500%);
+        }
+      }
+      position: relative;
+      overflow: hidden;
+      &::after {
+        content: "";
+        top: 0;
+        transform: translateX(100%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 1;
+        animation: shine 3s infinite linear;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1) 10%,
+          rgba(255, 255, 255, 0.3) 40%,
+          rgba(255, 255, 255, 0.5) 50%,
+          rgba(255, 255, 255, 0.3) 60%,
+          rgba(255, 255, 255, 0.1) 90%
+
+        );
+      }
+    `,
+  },
 };

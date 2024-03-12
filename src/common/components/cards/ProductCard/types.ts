@@ -1,7 +1,7 @@
-import { IProductModel } from "@/common/types";
+import { IProductModelSecond } from "@/common/types";
 
 export interface IProductCardProps {
-  product: IProductModel;
+  product: IProductModelSecond;
 }
 
 export interface IProductButtonProps {

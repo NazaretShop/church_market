@@ -28,6 +28,9 @@ export interface IConfigProps {
     headerSpace: string;
     mainContainerWidth: string;
   };
+  animation: {
+    shine: string;
+  };
 }
 
 export interface IThemeProvider extends PropsWithChildren {}

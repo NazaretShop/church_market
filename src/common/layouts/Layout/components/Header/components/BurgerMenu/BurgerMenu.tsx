@@ -43,15 +43,15 @@ const BurgerMenu: FC<IBurgerMenuProps> = (props) => {
 
   const renderNavigation = () => {
     return categories.map((item) => {
-      const isActive = category === item.name;
+      const isActive = category === item.title.rendered;
       return (
         <Item
           key={item.id}
           isDarken={isDarken}
           isActive={isActive}
-          onClick={() => handlerRedirect(isActive, item.name)}
+          onClick={() => handlerRedirect(isActive, item.title.rendered)}
         >
-          {item.name}
+          {item.title.rendered}
         </Item>
       );
     });

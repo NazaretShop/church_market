@@ -1,4 +1,3 @@
-import { ProductCard } from "@/common/components/cards";
 import { CloseIcon } from "@/common/components/icons";
 import { LINK_TEMPLATES } from "@/common/constants";
 import { useDebounce } from "@/common/hooks";
@@ -15,8 +14,6 @@ import {
   Container,
   Content,
   Filter,
-  Grid,
-  NotFound,
   Wrapper,
 } from "./styles";
 import { IGoods } from "./types";
@@ -41,11 +38,11 @@ const Market = () => {
 
   useSetLimitPerPage((limit) => onChangeFilterField(limit, "limit"));
 
-  const renderGrid = () => {
-    return filteredProducts
-      .slice((page - 1) * limit, page * limit)
-      .map((item, id) => <ProductCard product={item.product} key={id} />);
-  };
+  // const renderGrid = () => {
+  //   return filteredProducts
+  //     .slice((page - 1) * limit, page * limit)
+  //     .map((item, id) => <ProductCard product={item.product} key={id} />);
+  // };
 
   useEffect(() => {
     if (isInit) {
@@ -96,7 +93,7 @@ const Market = () => {
           </Actions>
           {isInit && (
             <>
-              {!!filteredProducts.length ? (
+              {/* {!!filteredProducts.length ? (
                 <Grid>{renderGrid()}</Grid>
               ) : (
                 <NotFound>
@@ -104,7 +101,7 @@ const Market = () => {
                   ласка, спробуйте змінити свій пошуковий запит або перевірте,
                   чи правильно введені дані.
                 </NotFound>
-              )}
+              )} */}
               <Pagination
                 currentPage={page}
                 onPageChange={(page) => {

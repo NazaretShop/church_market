@@ -1,8 +1,9 @@
 import brokenImage from "@/assets/images/broken.png";
-import { IFileUploadedModel } from "../types";
+import { IFileUploadedModelSecond } from "../types";
 
-export const getImage = (urls: IFileUploadedModel[]): string => {
+export const getImage = (urls: IFileUploadedModelSecond[]): string => {
   return (
-    urls.find((url) => url.url.split(".").pop() !== "mp4")?.url || brokenImage
+    urls.find((url) => url?.post_mime_type?.split("/")[0] === "image")?.guid ||
+    brokenImage
   );
 };

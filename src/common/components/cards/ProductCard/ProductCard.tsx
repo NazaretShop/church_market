@@ -18,7 +18,7 @@ import { IProductCardProps } from "./types";
 const ProductCard: FC<IProductCardProps> = ({ product }) => {
   const push = useNavigate();
 
-  const addItemBasket = useGeneralStore((state) => state.addBasket);
+  // const addItemBasket = useGeneralStore((state) => state.addBasket);
   const basket = useGeneralStore((state) => state.basket);
   const isAdded = !!basket.some((item) => item.id === product.id);
 
@@ -26,14 +26,14 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     e.stopPropagation();
     if (!isAdded) {
       if (basket.length < +process.env.NEXT_PUBLIC_MAX_BASKET_COUNT!) {
-        addItemBasket({
-          count: 1,
-          id: product.id,
-          name: product.title,
-          price: product.price,
-          image: product.files[0].url,
-          total: product.price,
-        });
+        // addItemBasket({
+        //   count: 1,
+        //   id: product.id,
+        //   name: product.,
+        //   price: product.price,
+        //   image: product.files[0].url,
+        //   total: product.price,
+        // });
       } else {
         alert(
           `Максимальна кількість покупки товарів за один раз ${+process.env
@@ -49,11 +49,14 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
     >
       <Content>
         <Preview>
-          <img src={getImage(product?.files)} alt={product?.title} />
+          <img
+            src={getImage(product?.product_images)}
+            alt={product?.product_name}
+          />
         </Preview>
         <Panel>
-          <Title>{product?.title}</Title>
-          <Price>{getReducedNumber(product?.price)} грн</Price>
+          <Title>{product?.product_name}</Title>
+          <Price>{getReducedNumber(product?.product_price)} грн</Price>
           <Button isFilled={!isAdded} onClick={handlerAdd}>
             {isAdded ? "В кошику" : "Купити"}
           </Button>

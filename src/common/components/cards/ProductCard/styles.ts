@@ -84,6 +84,10 @@ export const Panel = styled.div`
   }
 `;
 
+export const PanelLoader = styled(Panel)`
+  ${({ theme }) => theme.animation.shine}
+`
+
 export const Flex = styled.div`
   ${({ theme }) => theme.flex.column};
   width: 100%;
@@ -119,6 +123,10 @@ export const Preview = styled.div`
     height: 100%;
     border-radius: 5px;
   }
+`;
+
+export const PreviewLoader = styled(Preview)`
+  ${({ theme }) => theme.animation.shine}
 `;
 
 export const Button = styled.button<IProductButtonProps>`

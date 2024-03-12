@@ -18,6 +18,24 @@ export interface IProductModel {
   category: string;
 }
 
+export interface IFileUploadedModelSecond {
+  guid: string;
+  ID: string | number;
+  post_name: string;
+  post_mime_type: string | null;
+}
+
+export interface IProductModelSecond {
+  id: string;
+  product_name: string;
+  product_amount: string;
+  product_images: IFileUploadedModelSecond[];
+  product_description: string;
+  product_parameters: string[];
+  product_price: number;
+  product_category: { post_title: string }[];
+}
+
 export interface IFileUploadedModel {
   url: string;
   id: string | number;
@@ -69,7 +87,7 @@ export interface ICategoryModel {
 
 export interface ICategoryModelSecond {
   id: string;
-  name: string;
+  title: { rendered: string };
 }
 
 export interface IAreaModel {

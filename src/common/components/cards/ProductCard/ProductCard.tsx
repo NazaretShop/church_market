@@ -18,26 +18,26 @@ import { IProductCardProps } from "./types";
 const ProductCard: FC<IProductCardProps> = ({ product }) => {
   const push = useNavigate();
 
-  // const addItemBasket = useGeneralStore((state) => state.addBasket);
+  const addItemBasket = useGeneralStore((state) => state.addBasket);
   const basket = useGeneralStore((state) => state.basket);
   const isAdded = !!basket.some((item) => item.id === product.id);
 
   const handlerAdd = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (!isAdded) {
-      if (basket.length < +process.env.NEXT_PUBLIC_MAX_BASKET_COUNT!) {
-        // addItemBasket({
-        //   count: 1,
-        //   id: product.id,
-        //   name: product.,
-        //   price: product.price,
-        //   image: product.files[0].url,
-        //   total: product.price,
-        // });
+      if (basket.length < +process.env.REACT_APP_MAX_BASKET_COUNT!) {
+        addItemBasket({
+          count: 1,
+          id: product.id,
+          name: product.product_name,
+          price: +product.product_price,
+          image: product.product_images[0].guid,
+          total: product.product_price,
+        });
       } else {
         alert(
           `Максимальна кількість покупки товарів за один раз ${+process.env
-            .NEXT_PUBLIC_MAX_BASKET_COUNT!} одиниць`
+            .REACT_APP_MAX_BASKET_COUNT!} одиниць`
         );
       }
     }
@@ -45,7 +45,10 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
 
   return (
     <Wrapper
-      onClick={() => push(LINK_TEMPLATES.PRODUCT_DETAILS({ id: product.id }))}
+      onClick={() => {
+        push(LINK_TEMPLATES.PRODUCT_DETAILS({ id: product.id }));
+        window.scrollTo(0, 0);
+      }}
     >
       <Content>
         <Preview>

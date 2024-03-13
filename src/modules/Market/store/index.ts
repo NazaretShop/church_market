@@ -1,5 +1,6 @@
 import { PAGE_LIMIT } from "@/common/constants";
 import { createSelectorHooks } from "@/utils";
+import { useLocation } from "react-router-dom";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -28,11 +29,15 @@ export const useMarketStore = createSelectorHooks(
   )
 );
 
-export const useMarketSync = (
-  params: Omit<IInitialMarketStoreProps, "limit">
-) => {
+export const useMarketSync = () => {
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+
   useMarketStore.setState((state) => ({
     ...state,
-    ...params,
+    category: searchParams.get("category") || "",
+    search: searchParams.get("search") || "",
+    page: Number(searchParams.get("page") || 1),
+    isInit: true,
   }));
 };

@@ -17,10 +17,6 @@ import { IOrderFormField } from "./types";
 
 const Orders = () => {
   const push = useNavigate();
-  const hasHydrated =
-    typeof window === "undefined"
-      ? false
-      : useGeneralStore.persist.hasHydrated();
 
   const basket = useGeneralStore((state) => state.basket);
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +25,7 @@ const Orders = () => {
 
   const totalPrice = useMemo(() => {
     return basket.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.total,
+      (accumulator, currentValue) => accumulator + +currentValue.total,
       0
     );
   }, [JSON.stringify(basket)]);
@@ -61,10 +57,10 @@ const Orders = () => {
   };
 
   useEffect(() => {
-    if (!basket.length && !isOpen && hasHydrated) {
+    if (!basket.length && !isOpen) {
       push(LINK_TEMPLATES.PRODUCTS({}));
     }
-  }, [basket.length, isOpen, hasHydrated]);
+  }, [basket.length, isOpen]);
 
   return (
     <FormProvider {...methods}>

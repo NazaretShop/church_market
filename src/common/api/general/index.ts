@@ -22,13 +22,15 @@ export const useGetCategoriesQuery = () => {
   });
 };
 
-export const useGetNewProductsQuery = () => {
+export const useGetProductsQuery = (limited?: boolean) => {
   return useQuery<IProductModelSecond[]>({
     staleTime: 60000,
     refetchOnMount: false,
-    queryKey: [QueryKey.NEW_PRODUCTS],
+    queryKey: [QueryKey.PRODUCTS, limited],
     queryFn: async () => {
-      const response = await axiosBaseInstance.get("/product?per_page=10");
+      const response = await axiosBaseInstance.get(
+        `/product${!!limited ? "?per_page=10" : ""}`
+      );
 
       if (response.status === 200) {
         const products = response.data;

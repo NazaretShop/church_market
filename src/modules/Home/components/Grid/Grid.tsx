@@ -1,10 +1,10 @@
-import { useGetNewProductsQuery } from "@/common/api/general";
+import { useGetProductsQuery } from "@/common/api/general";
 import { TitleArticle } from "@/common/components/articles";
 import { LoaderProductCard, ProductCard } from "@/common/components/cards";
 import { Container, Wrapper } from "./styles";
 
 const Grid = () => {
-  const { data: goods, isLoading } = useGetNewProductsQuery();
+  const { data: goods, isLoading } = useGetProductsQuery();
 
   const renderGrid = () => {
     return goods?.map((item) => <ProductCard product={item} key={item.id} />);

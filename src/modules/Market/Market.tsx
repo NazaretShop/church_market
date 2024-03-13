@@ -1,26 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useGetProductsQuery } from "@/common/api/general";
+import { LoaderProductCard, ProductCard } from "@/common/components/cards";
 import { CloseIcon } from "@/common/components/icons";
 import { LINK_TEMPLATES } from "@/common/constants";
 import { useDebounce } from "@/common/hooks";
 import { Pagination } from "@/common/shared";
+import { IProductModelSecond } from "@/common/types";
 import { PriceInterval, SimpleInput } from "@/ui-liberty/inputs";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { notFoundText } from "./data";
 import { filterGoods } from "./helpers";
 import { useSetLimitPerPage } from "./hooks";
-import { useMarketStore } from "./store";
+import { useMarketStore, useMarketSync } from "./store";
 import {
   Actions,
   Breadcrumbs,
   Container,
   Content,
   Filter,
+  Grid,
+  NotFound,
   Wrapper,
 } from "./styles";
-import { IGoods } from "./types";
 
 const Market = () => {
-  const goods = [] as IGoods[];
   const push = useNavigate();
+
   const category = useMarketStore.useCategory();
   const page = useMarketStore.usePage();
   const limit = useMarketStore.useLimit();
@@ -29,20 +35,25 @@ const Market = () => {
   const search = useMarketStore.useSearch();
   const isInit = useMarketStore.useIsInit();
 
+  useMarketSync();
+
+  const { data: goods, isLoading } = useGetProductsQuery();
+
   const onChangeFilterField = useMarketStore.useOnChangeFilterFieldHandler();
   const [value, setValue] = useState(search);
-  const [filteredProducts, setFilteredProducts] = useState(
-    filterGoods({ category, search, maxPrice, minPrice }, goods)
-  );
+  const [filteredProducts, setFilteredProducts] = useState<
+    IProductModelSecond[]
+  >([]);
+
   const debouncedValue = useDebounce<string>(value, 1000);
 
   useSetLimitPerPage((limit) => onChangeFilterField(limit, "limit"));
 
-  // const renderGrid = () => {
-  //   return filteredProducts
-  //     .slice((page - 1) * limit, page * limit)
-  //     .map((item, id) => <ProductCard product={item.product} key={id} />);
-  // };
+  const renderGrid = () => {
+    return filteredProducts
+      .slice((page - 1) * limit, page * limit)
+      .map((item, id) => <ProductCard product={item} key={id} />);
+  };
 
   useEffect(() => {
     if (isInit) {
@@ -51,10 +62,21 @@ const Market = () => {
   }, [debouncedValue]);
 
   useEffect(() => {
-    setFilteredProducts(
-      filterGoods({ category, search, maxPrice, minPrice }, goods)
-    );
-  }, [category, page, search, maxPrice, minPrice, limit]);
+    if (!!goods?.length && isInit) {
+      setFilteredProducts(
+        filterGoods({ category, search, maxPrice, minPrice }, goods)
+      );
+    }
+  }, [
+    category,
+    page,
+    isInit,
+    goods?.length,
+    search,
+    maxPrice,
+    minPrice,
+    limit,
+  ]);
 
   useEffect(() => {
     setValue(search);
@@ -91,27 +113,26 @@ const Market = () => {
               </Breadcrumbs>
             )}
           </Actions>
-          {isInit && (
-            <>
-              {/* {!!filteredProducts.length ? (
-                <Grid>{renderGrid()}</Grid>
-              ) : (
-                <NotFound>
-                  На жаль, за вашим запитом не знайдено жодної продукції. Будь
-                  ласка, спробуйте змінити свій пошуковий запит або перевірте,
-                  чи правильно введені дані.
-                </NotFound>
-              )} */}
-              <Pagination
-                currentPage={page}
-                onPageChange={(page) => {
-                  push(LINK_TEMPLATES.PRODUCTS({ search, category, page }));
-                }}
-                pageSize={limit}
-                totalCount={filteredProducts.length}
-              />
-            </>
+          {(filteredProducts.length || isLoading) && (
+            <Grid>
+              {isLoading
+                ? [...Array(limit)].map((_, id) => (
+                    <LoaderProductCard key={id} />
+                  ))
+                : renderGrid()}
+            </Grid>
           )}
+          {!filteredProducts.length && !isLoading && (
+            <NotFound>{notFoundText}</NotFound>
+          )}
+          <Pagination
+            currentPage={page}
+            onPageChange={(page) => {
+              push(LINK_TEMPLATES.PRODUCTS({ search, category, page }));
+            }}
+            pageSize={limit}
+            totalCount={filteredProducts.length}
+          />
         </Container>
       </Content>
     </Wrapper>

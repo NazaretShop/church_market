@@ -28,7 +28,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
   const handlerAdd = (e: MouseEvent<HTMLButtonElement>) => {
     if (!isAdded) {
       e.stopPropagation();
-      if (basket.length < +process.env.NEXT_PUBLIC_MAX_BASKET_COUNT!) {
+      if (basket.length < +process.env.REACT_APP_MAX_BASKET_COUNT!) {
         // addItemBasket({
         //   count: 1,
         //   id: id,
@@ -40,7 +40,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
       } else {
         alert(
           `Максимальна кількість покупки товарів за один раз ${+process.env
-            .NEXT_PUBLIC_MAX_BASKET_COUNT!} одиниць`
+            .REACT_APP_MAX_BASKET_COUNT!} одиниць`
         );
       }
     }

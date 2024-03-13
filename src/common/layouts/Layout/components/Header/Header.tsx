@@ -5,8 +5,7 @@ import { useOnClickOutside } from "@/common/hooks";
 import { useGeneralStore } from "@/common/store";
 import { themeColors } from "@/theme/colors";
 import { FC, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLayoutStore } from "../../store";
+import { useLocation, useNavigate } from "react-router-dom";
 import { BurgerMenu } from "./components";
 import {
   BasketBtn,
@@ -22,7 +21,9 @@ import { IHeaderProps } from "./types";
 
 const Header: FC<IHeaderProps> = ({ categories }) => {
   const basket = useGeneralStore((state) => state.basket);
-  const isDarken = useLayoutStore.useIsDarken();
+  const { pathname } = useLocation();
+
+  const isDarken = pathname === "/";
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);

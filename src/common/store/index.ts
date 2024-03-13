@@ -8,8 +8,6 @@ const initialState: IGeneralStoreInitProps = {
   basket: [],
 };
 
-const MAX_BASKET_TOTAL = 20;
-
 export const useGeneralStore = create<IGeneralStoreProps>()(
   persist(
     immer((set) => ({
@@ -29,11 +27,11 @@ export const useGeneralStore = create<IGeneralStoreProps>()(
           if (elementIndex !== -1) {
             if (
               state.basket[elementIndex].count <=
-              +process.env.NEXT_PUBLIC_MAX_PRODUCT_COUNT!
+              +process.env.REACT_APP_MAX_PRODUCT_COUNT!
             ) {
               state.basket[elementIndex].count = counter;
               state.basket[elementIndex].total =
-                counter * state.basket[elementIndex].price;
+                counter * +state.basket[elementIndex].price;
             }
           }
         }),
@@ -44,14 +42,7 @@ export const useGeneralStore = create<IGeneralStoreProps>()(
     })),
     {
       name: "basket-nazaret-storage",
-      skipHydration: true,
       storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
-
-export const useGeneralSync = (headerDarkStyle: boolean) => {
-  useGeneralStore.setState((state: IGeneralStoreInitProps) => {
-    return { ...state, headerDarkStyle };
-  });
-};

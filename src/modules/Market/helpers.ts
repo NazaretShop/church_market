@@ -1,25 +1,25 @@
+import { IProductModelSecond } from "@/common/types";
 import { IInitialMarketStoreProps } from "./store/types";
-import { IGoods } from "./types";
 
 export const filterGoods = (
   filters: Pick<
     IInitialMarketStoreProps,
     "category" | "search" | "maxPrice" | "minPrice"
   >,
-  goods: IGoods[]
-): IGoods[] => {
+  goods: IProductModelSecond[]
+): IProductModelSecond[] => {
   const { category, search, maxPrice, minPrice } = filters;
   return goods.filter((product) => {
     // filter by query
     if (
       search &&
-      !product.product.title.toLowerCase().includes(search.toLowerCase())
+      !product.product_name.toLowerCase().includes(search.toLowerCase())
     ) {
       return false;
     }
 
     // filter by categories
-    if (category && category !== product.product.category) {
+    if (category && category !== product.product_category[0].post_title) {
       return false;
     }
 
@@ -27,7 +27,7 @@ export const filterGoods = (
     if (
       maxPrice &&
       minPrice &&
-      (+product.product.price > maxPrice || +product.product.price < minPrice)
+      (+product.product_price > maxPrice || +product.product_price < minPrice)
     ) {
       return false;
     }

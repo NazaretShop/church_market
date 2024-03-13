@@ -33,7 +33,7 @@ const GoodsItem: FC<IGoodsIBaskedModel> = ({
   const [counter, setCounter] = useState(count);
 
   useEffect(() => {
-    if (counter <= +process.env.NEXT_PUBLIC_MAX_PRODUCT_COUNT!) {
+    if (counter <= +process.env.REACT_APP_MAX_PRODUCT_COUNT!) {
       updateCounter(id, counter);
     } else if (counter < 1) {
       updateCounter(id, 1);
@@ -94,7 +94,7 @@ const GoodsItem: FC<IGoodsIBaskedModel> = ({
               </Button>
             </Counter>
             <Result>
-              <Price>{getReducedNumber(price * count)} грн</Price>
+              <Price>{getReducedNumber(+price * count)} грн</Price>
             </Result>
           </EventRow>
         </Content>

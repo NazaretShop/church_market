@@ -1,5 +1,9 @@
 import { QueryKey } from "@/common/enums";
-import { ICategoryModelSecond, IProductModelSecond } from "@/common/types";
+import {
+  IBannerModel,
+  ICategoryModelSecond,
+  IProductModelSecond,
+} from "@/common/types";
 import { useQuery } from "@tanstack/react-query";
 import { axiosBaseInstance } from "../axios";
 
@@ -50,6 +54,25 @@ export const useGetSingleProductQuery = (id: string | undefined) => {
     queryKey: [QueryKey.SINGLE_PRODUCT, id],
     queryFn: async () => {
       const response = await axiosBaseInstance.get(`/product/${id}`);
+
+      if (response.status === 200) {
+        const products = response.data;
+        return products;
+      } else {
+        console.error("Request failed with status code:", response.status);
+        return [];
+      }
+    },
+  });
+};
+
+export const useGetBannersQuery = () => {
+  return useQuery<IBannerModel[]>({
+    staleTime: 60000,
+    refetchOnMount: false,
+    queryKey: [QueryKey.BANNER],
+    queryFn: async () => {
+      const response = await axiosBaseInstance.get(`/banner`);
 
       if (response.status === 200) {
         const products = response.data;

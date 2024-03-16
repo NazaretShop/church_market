@@ -25,9 +25,8 @@ export const filterGoods = (
 
     // filter by price
     if (
-      maxPrice &&
-      minPrice &&
-      (+product.product_price > maxPrice || +product.product_price < minPrice)
+      +product.product_price > maxPrice ||
+      +product.product_price < minPrice
     ) {
       return false;
     }

@@ -1,5 +1,6 @@
 import { LINK_TEMPLATES } from "@/common/constants";
 import { useGeneralStore } from "@/common/store";
+import { useSnackbar } from "notistack";
 import { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,8 @@ const Orders = () => {
   const [isOpen, setIsOpen] = useState(false);
   const methods = useForm<IOrderFormField>();
   const { handleSubmit, reset } = methods;
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const totalPrice = useMemo(() => {
     return basket.reduce(
@@ -49,7 +52,11 @@ const Orders = () => {
       });
       reset();
       setIsOpen(true);
-    } catch (error) {}
+    } catch (error) {
+      enqueueSnackbar("Виникла проблема, спробуйте будь-ласка пізніше", {
+        variant: "warning",
+      });
+    }
   };
 
   const renderGoods = () => {

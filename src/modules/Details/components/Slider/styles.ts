@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     text-align: center;
     font-size: 18px;
     margin: auto 0;
-    background: #fff;
+    background: #ffffff;
     ${({ theme }) => theme.flex.center};
   }
 
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
   }
 
   .swiper-pagination-bullet-active {
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 234, 4, 0.8);
   }
   .swiper-button-prev,
   .swiper-button-next {

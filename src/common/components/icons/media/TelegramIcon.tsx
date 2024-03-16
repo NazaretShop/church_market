@@ -3,7 +3,7 @@ import * as React from "react";
 function TelegramIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={40} height={40} viewBox="0 0 40 40" fill="none" {...props}>
-      <g xmlns="http://www.w3.org/2000/svg" clip-path="url(#clip0_504_2974)">
+      <g xmlns="http://www.w3.org/2000/svg" clipPath="url(#clip0_504_2974)">
         <mask
           id="mask0_504_2974"
           maskUnits="userSpaceOnUse"

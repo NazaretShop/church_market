@@ -6,7 +6,6 @@ import { Main } from "./styles";
 
 const Layout: FC<PropsWithChildren> = () => {
   const { data: categories } = useGetCategoriesQuery();
-  console.log("categories :", categories);
   return (
     <Main>
       <Header categories={categories || []} isDarken={false} />

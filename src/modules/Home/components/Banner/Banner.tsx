@@ -3,20 +3,22 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import imageLogo from "@/assets/images/logo.png";
+import { useGetBannersQuery } from "@/common/api/general";
 import { useOnScreen } from "@/common/hooks";
 import { useLayoutStore } from "@/common/layouts/Layout/store";
 import { useEffect, useRef } from "react";
 import { Item } from "./components";
-import { sliderData } from "./data";
-import { Wrapper } from "./styles";
+import { Block, FixedLoader, ImageLogo, Loader, Wrapper } from "./styles";
 
 const Banner = () => {
   const inBannerRef = useRef<HTMLDivElement>(null);
   const isOnScreen = useOnScreen(inBannerRef, "0px");
   const onChangeTheme = useLayoutStore.useOnChangeTheme();
+  const { data: banners, isLoading } = useGetBannersQuery();
 
   const renderSlide = () => {
-    return sliderData.map((slide) => (
+    return banners?.map((slide) => (
       <SwiperSlide key={slide.id}>
         <Item {...slide} />
       </SwiperSlide>
@@ -29,20 +31,29 @@ const Banner = () => {
 
   return (
     <Wrapper ref={inBannerRef}>
-      <Swiper
-        slidesPerView={1}
-        loop={true}
-        speed={600}
-        autoplay={{
-          delay: 10000,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Autoplay, Pagination]}
-      >
-        {renderSlide()}
-      </Swiper>
+      {isLoading ? (
+        <FixedLoader>
+          <Block>
+            <ImageLogo src={imageLogo} alt="logo" />
+            <Loader />
+          </Block>
+        </FixedLoader>
+      ) : (
+        <Swiper
+          slidesPerView={1}
+          loop={true}
+          speed={600}
+          autoplay={{
+            delay: 10000,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
+        >
+          {renderSlide()}
+        </Swiper>
+      )}
     </Wrapper>
   );
 };

@@ -36,3 +36,23 @@ export const Decoration = styled.img<{ orientation: "top" | "bottom" }>`
   max-width: 300px;
   height: auto;
 `;
+
+export const Wrapper = styled.div`
+  ${({ theme }) => theme.flex.row};
+  color: ${({ theme }) => theme.colors.primary};
+  width: 100%;
+  height: fit-content;
+  min-height: 100svh;
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+  padding: 115px 16px 60px 16px;
+  @media screen and (max-width: 540px) {
+    font-size: 24px;
+  }
+`;
+
+export const Title = styled.div`
+  font-size: 60px;
+  line-height: 1;
+`;

@@ -2,6 +2,7 @@ import { LINK_TEMPLATES } from "@/common/constants";
 import { getImage } from "@/common/helpers";
 import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { useGeneralStore } from "@/common/store";
+import { useSnackbar } from "notistack";
 import { FC, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -17,7 +18,7 @@ import { IProductCardProps } from "./types";
 
 const ProductCard: FC<IProductCardProps> = ({ product }) => {
   const push = useNavigate();
-
+  const { enqueueSnackbar } = useSnackbar();
   const addItemBasket = useGeneralStore((state) => state.addBasket);
   const basket = useGeneralStore((state) => state.basket);
   const isAdded = !!basket.some((item) => item.id === product.id);
@@ -35,9 +36,12 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
           total: product.product_price,
         });
       } else {
-        alert(
+        enqueueSnackbar(
           `Максимальна кількість покупки товарів за один раз ${+process.env
-            .REACT_APP_MAX_BASKET_COUNT!} одиниць`
+            .REACT_APP_MAX_BASKET_COUNT!} одиниць`,
+          {
+            variant: "warning",
+          }
         );
       }
     }

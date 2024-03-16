@@ -3,7 +3,7 @@ import * as React from "react";
 function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width={40} height={40} viewBox="0 0 40 40" fill="none" {...props}>
-      <g clip-path="url(#clip0_504_2990)">
+      <g clipPath="url(#clip0_504_2990)">
         <mask
           id="mask0_504_2990"
           maskUnits="userSpaceOnUse"

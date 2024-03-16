@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  ${({ theme }) => theme.content.mainContainerPadding};
+  ${({ theme }) => theme.content.mainContainerWidth};
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  @media screen and (max-width: 1600px) {
+    padding: 0;
+  }
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -28,9 +39,10 @@ export const Background = styled.img`
 `;
 
 export const Block = styled.div`
-  transform: translate3d(0, 0, 0);
   ${({ theme }) => theme.flex.column};
+  transform: translate3d(0, 0, 0);
   position: relative;
+  width: 100%;
   z-index: 2;
   gap: 16px;
   width: fit-content;

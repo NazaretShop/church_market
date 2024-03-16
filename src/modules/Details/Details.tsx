@@ -1,5 +1,6 @@
 import { useGetSingleProductQuery } from "@/common/api/general";
 import { useParams } from "react-router-dom";
+import NotFound from "../NotFound/NotFound";
 import { Information, Slider, SliderLoader } from "./components";
 import {
   Content,
@@ -17,7 +18,7 @@ const Details = () => {
   const { data: product, isLoading } = useGetSingleProductQuery(id);
 
   if (!product && !isLoading) {
-    return <Wrapper />;
+    return <NotFound />;
   }
 
   if (isLoading) {

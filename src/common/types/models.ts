@@ -36,6 +36,15 @@ export interface IProductModelSecond {
   product_category: { post_title: string }[];
 }
 
+export interface IBannerModel {
+  id: string;
+  banner_description: string;
+  banner_image: {
+    guid: string;
+  };
+  banner_name: string;
+}
+
 export interface IFileUploadedModel {
   url: string;
   id: string | number;

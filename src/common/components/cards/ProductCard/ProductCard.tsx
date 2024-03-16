@@ -32,7 +32,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
           id: product.id,
           name: product.product_name,
           price: +product.product_price,
-          image: product.product_images[0].guid,
+          image: getImage(product?.product_images),
           total: product.product_price,
         });
       } else {

@@ -22,7 +22,7 @@ export const generateOrderHTML = (order: IOrderModel): string => {
         <p>Контактний номер: ${order.phoneNumber}</p>
         <p>Пошта: ${order.email}</p>
         <p>Регіон: ${order.region}</p>
-        <p>Місто: ${order.city}</p>
+        <p>Населений пункт: ${order.settlement}</p>
         <p>Відділення: ${order.department}</p>
         <p>Коментар до замовлення: <br/> ${order.comment}</p>
         <h3>Товари на замовлення:</h3>

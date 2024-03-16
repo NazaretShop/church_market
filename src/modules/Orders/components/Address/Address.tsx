@@ -4,7 +4,7 @@ import {
   useGetWarehousesByCityQuery,
 } from "@/common/api";
 import { redoArrayInOptions } from "@/common/helpers";
-import { IAreaModel, ICityModel, IWarehouse } from "@/common/types";
+import { IAreaModel, ISettlementModel, IWarehouse } from "@/common/types";
 import { Select } from "@/ui-liberty/inputs";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -48,16 +48,16 @@ const Address = () => {
           }}
         />
         <Select
-          options={redoArrayInOptions<ICityModel>({
+          options={redoArrayInOptions<ISettlementModel>({
             array: cities || [],
             idFieldName: "CityID",
             valueFieldName: "Description",
             labelFieldName: "Description",
           })}
-          placeholder="Місто"
-          label="Місто"
-          registerOptions={register("city", { required: true })}
-          error={errors.city}
+          placeholder="Населений пункт"
+          label="Населений пункт"
+          registerOptions={register("settlement", { required: true })}
+          error={errors.settlement}
           onChangeFullObject={(value) => {
             setCurrentCity(value.Ref);
           }}

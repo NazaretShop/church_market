@@ -1,4 +1,4 @@
-import imageLogo from "@/assets/images/logo.png";
+import imageLogo from "@/assets/images/logo.webp";
 import { EmailIcon, PhoneIcon } from "@/common/components/icons";
 import { social } from "./data";
 import {

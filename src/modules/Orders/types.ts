@@ -3,7 +3,7 @@ import { IAreaModel, IOrderModel, IPageProps } from "@/common/types";
 export interface IOrderFormField
   extends Pick<
     IOrderModel,
-    | "city"
+    | "settlement"
     | "comment"
     | "department"
     | "email"

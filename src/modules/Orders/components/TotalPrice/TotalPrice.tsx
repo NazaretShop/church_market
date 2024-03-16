@@ -1,4 +1,4 @@
-import imageFrame from "@/assets/images/frame.png";
+import imageFrame from "@/assets/images/frame.webp";
 import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { Button } from "@/ui-liberty/buttons";
 import { FC } from "react";

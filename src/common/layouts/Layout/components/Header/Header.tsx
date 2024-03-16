@@ -1,4 +1,4 @@
-import imageLogo from "@/assets/images/logo-header.png";
+import imageLogo from "@/assets/images/logo-header.webp";
 import { PhoneIcon, ShoppingCardIcon } from "@/common/components/icons";
 import { LINK_TEMPLATES } from "@/common/constants";
 import { useOnClickOutside } from "@/common/hooks";

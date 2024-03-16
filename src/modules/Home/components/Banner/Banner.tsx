@@ -3,7 +3,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import imageLogo from "@/assets/images/logo.png";
+import imageLogo from "@/assets/images/logo.webp";
 import { useGetBannersQuery } from "@/common/api/general";
 import { useOnScreen } from "@/common/hooks";
 import { useLayoutStore } from "@/common/layouts/Layout/store";

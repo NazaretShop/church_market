@@ -76,7 +76,7 @@ export interface IOrderModel {
   phoneNumber: string;
   email: string;
   region: string;
-  city: string;
+  settlement: string;
   department: string;
   comment: string;
   goods: IGoodsIBaskedModel[];
@@ -106,7 +106,7 @@ export interface IAreaModel {
   Description: string;
 }
 
-export interface ICityModel {
+export interface ISettlementModel {
   Description: string;
   DescriptionRu: string;
   Ref: string;

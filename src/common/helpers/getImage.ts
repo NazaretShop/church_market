@@ -1,4 +1,4 @@
-import brokenImage from "@/assets/images/broken.png";
+import brokenImage from "@/assets/images/broken.webp";
 import { IFileUploadedModelSecond } from "../types";
 
 export const getImage = (urls: IFileUploadedModelSecond[]): string => {

@@ -1,4 +1,4 @@
-import imageFrame from "@/assets/images/frame.png";
+import imageFrame from "@/assets/images/frame.webp";
 import { LINK_TEMPLATES } from "@/common/constants";
 import { Button } from "@/ui-liberty/buttons";
 import { useNavigate } from "react-router-dom";

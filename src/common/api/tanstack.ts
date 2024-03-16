@@ -1,7 +1,7 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { axiosNovaInstance } from ".";
 import { QueryKey } from "../enums";
-import { IAreaModel, ICityModel, IWarehouse } from "../types";
+import { IAreaModel, ISettlementModel, IWarehouse } from "../types";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,7 +44,7 @@ export const useGetAreasQuery = () => {
 };
 
 export const useGetCitiesByAreaQuery = (enabled: boolean, refArea: string) => {
-  return useQuery<ICityModel[]>({
+  return useQuery<ISettlementModel[]>({
     enabled,
     staleTime: 60000,
     refetchOnMount: false,

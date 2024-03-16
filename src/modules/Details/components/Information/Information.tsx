@@ -1,3 +1,4 @@
+import { getImage } from "@/common/helpers";
 import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { useGeneralStore } from "@/common/store";
 import { IProductModelSecond } from "@/common/types";
@@ -38,7 +39,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
           id: id || "",
           name: product_name || "",
           price: +(product_price || 0),
-          image: product_images?.[0]?.guid || "",
+          image: getImage(product_images),
           total: product_price || 0,
         });
       } else {

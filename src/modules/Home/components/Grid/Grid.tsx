@@ -4,13 +4,15 @@ import { LoaderProductCard, ProductCard } from "@/common/components/cards";
 import { Container, Wrapper } from "./styles";
 
 const Grid = () => {
-  const { data: goods, isLoading } = useGetProductsQuery();
+  const { data: goods, isLoading } = useGetProductsQuery({ limit: 10 });
 
   const renderGrid = () => {
-    return goods?.map((item) => <ProductCard product={item} key={item.id} />);
+    return goods?.items?.map((item) => (
+      <ProductCard product={item} key={item.id} />
+    ));
   };
 
-  if (!goods?.length && !isLoading) {
+  if (!goods?.items?.length && !isLoading) {
     return null;
   }
 

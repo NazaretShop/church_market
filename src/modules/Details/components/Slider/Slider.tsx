@@ -16,18 +16,19 @@ import {
 import { ISliderImages } from "./types";
 
 const Slider: FC<ISliderImages> = ({ images }) => {
+  console.log("images :", images);
   const [activeSlide, setActive] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
 
   const renderSlide = () => {
-    return images.map((slide) => {
-      const isImage = slide?.post_mime_type?.split("/")[0] === "image";
+    return images.map((slide, id) => {
+      const isImage = slide?.split(".").pop() !== "mp4";
       return (
-        <SwiperSlide key={slide.ID}>
+        <SwiperSlide key={id}>
           {!isImage ? (
-            <VideoPlayer link={slide.guid} />
+            <VideoPlayer link={slide} />
           ) : (
-            <PreviewImage src={slide.guid} alt="preview" />
+            <PreviewImage src={slide} alt="preview" />
           )}
         </SwiperSlide>
       );
@@ -36,19 +37,19 @@ const Slider: FC<ISliderImages> = ({ images }) => {
 
   const renderImages = () => {
     return images.map((slide, id) => {
-      const isImage = slide?.post_mime_type?.split("/")[0] === "image";
+      const isImage = slide?.split(".").pop() !== "mp4";
 
       return (
         <Button
           type="button"
           isActive={activeSlide === id}
-          key={slide.ID}
+          key={id}
           onClick={() => swiperRef.current?.swiper.slideTo(id)}
         >
           {isImage ? (
-            <ImageItem src={slide.guid} alt="preview" />
+            <ImageItem src={slide} alt="preview" />
           ) : (
-            <VideoItem src={slide.guid} />
+            <VideoItem src={slide} />
           )}
         </Button>
       );

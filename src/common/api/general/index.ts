@@ -6,6 +6,7 @@ import {
 } from "@/common/types";
 import { useQuery } from "@tanstack/react-query";
 import { axiosBaseInstance } from "../axios";
+import { IFilterProps } from "./types";
 
 export const useGetCategoriesQuery = () => {
   return useQuery<ICategoryModelSecond[]>({
@@ -26,14 +27,25 @@ export const useGetCategoriesQuery = () => {
   });
 };
 
-export const useGetProductsQuery = (limited?: boolean) => {
-  return useQuery<IProductModelSecond[]>({
+export const useGetProductsQuery = ({
+  limit = 20,
+  max = 10000,
+  min = 0,
+  page = 1,
+  category,
+  search,
+}: IFilterProps) => {
+  return useQuery<{ total: number; items: IProductModelSecond[] }>({
     staleTime: 60000,
     refetchOnMount: false,
-    queryKey: [QueryKey.PRODUCTS, limited],
+    queryKey: [QueryKey.PRODUCTS, limit, max, min, page, search, category],
     queryFn: async () => {
       const response = await axiosBaseInstance.get(
-        `/product${!!limited ? "?per_page=10" : ""}`
+        `/product_list?${limit !== undefined ? `limit=${limit}` : ""}${
+          page ? `&page=${page}` : ""
+        }${category ? `&category=${category}` : ""}${
+          search ? `&search=${search}` : ""
+        }&min=${min}&max=${max}`
       );
 
       if (response.status === 200) {
@@ -53,7 +65,7 @@ export const useGetSingleProductQuery = (id: string | undefined) => {
     refetchOnMount: false,
     queryKey: [QueryKey.SINGLE_PRODUCT, id],
     queryFn: async () => {
-      const response = await axiosBaseInstance.get(`/product/${id}`);
+      const response = await axiosBaseInstance.get(`/single-product/${id}`);
 
       if (response.status === 200) {
         const products = response.data;

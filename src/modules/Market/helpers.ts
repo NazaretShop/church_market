@@ -19,7 +19,7 @@ export const filterGoods = (
     }
 
     // filter by categories
-    if (category && category !== product.product_category[0].post_title) {
+    if (category && category !== product.product_category) {
       return false;
     }
 

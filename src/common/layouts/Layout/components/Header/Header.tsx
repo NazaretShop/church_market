@@ -4,6 +4,7 @@ import { LINK_TEMPLATES } from "@/common/constants";
 import { useOnClickOutside } from "@/common/hooks";
 import { useGeneralStore } from "@/common/store";
 import { themeColors } from "@/theme/colors";
+import { useSnackbar } from "notistack";
 import { FC, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { BurgerMenu } from "./components";
@@ -28,7 +29,7 @@ const Header: FC<IHeaderProps> = ({ categories }) => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [isOpenCategory, setIsOpenCategory] = useState(false);
-
+  const { enqueueSnackbar } = useSnackbar();
   const refContainer = useRef<HTMLDivElement>(null);
   const push = useNavigate();
 
@@ -36,6 +37,12 @@ const Header: FC<IHeaderProps> = ({ categories }) => {
 
   const handlerRedirectToOrder = () => {
     if (basket.length) {
+      enqueueSnackbar(
+        "Ваш кошик пустий, додайти товар щоб зробити замовлення",
+        {
+          variant: "warning",
+        }
+      );
       push(LINK_TEMPLATES.ORDERS());
     } else {
       push(LINK_TEMPLATES.PRODUCTS({}));

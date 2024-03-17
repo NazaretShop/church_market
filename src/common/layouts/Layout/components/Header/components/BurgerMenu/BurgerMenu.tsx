@@ -49,7 +49,7 @@ const BurgerMenu: FC<IBurgerMenuProps> = (props) => {
           key={item.id}
           isDarken={isDarken}
           isActive={isActive}
-          onClick={() => handlerRedirect(isActive, item.title.rendered)}
+          onClick={() => handlerRedirect(isActive, item.id)}
         >
           {item.title.rendered}
         </Item>

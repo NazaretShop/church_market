@@ -22,6 +22,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
   product_parameters,
   id,
   product_images,
+  product_description,
   product_category,
 }) => {
   const addItemBasket = useGeneralStore((state) => state.addBasket);
@@ -40,7 +41,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
           name: product_name || "",
           price: +(product_price || 0),
           image: getImage(product_images),
-          total: product_price || 0,
+          total: +(product_price || 0),
         });
       } else {
         enqueueSnackbar(
@@ -82,7 +83,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
       </BasketAction>
       <Category>
         <b>Категорія: </b>
-        <span>{product_category?.[0]?.post_title}</span>
+        <span>{product_category}</span>
       </Category>
     </Wrapper>
   );

@@ -18,22 +18,15 @@ export interface IProductModel {
   category: string;
 }
 
-export interface IFileUploadedModelSecond {
-  guid: string;
-  ID: string | number;
-  post_name: string;
-  post_mime_type: string | null;
-}
-
 export interface IProductModelSecond {
   id: string;
   product_name: string;
   product_amount: string;
-  product_images: IFileUploadedModelSecond[];
+  product_images: string[];
   product_description: string;
   product_parameters: string[];
-  product_price: number;
-  product_category: { post_title: string }[];
+  product_price: string;
+  product_category: string;
 }
 
 export interface IBannerModel {

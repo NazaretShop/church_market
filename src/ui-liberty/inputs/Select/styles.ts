@@ -84,10 +84,8 @@ export const IndicatorImage = styled.div<IOpenable>`
 `;
 
 export const Row = styled.div`
-  ${({ theme }) => theme.flex.row};
-  min-height: 44px;
+  height: fit-content;
   padding: 10px 16px;
-  gap: 10px;
   cursor: pointer;
   color: #1d2939;
   font-size: 14px;

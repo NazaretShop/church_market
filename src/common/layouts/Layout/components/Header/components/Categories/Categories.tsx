@@ -39,7 +39,7 @@ const Categories: FC<ICategoriesProps> = ({
           isDarken={isDarken}
           key={category.id}
           isActive={isActive}
-          onClick={() => handlerRedirect(isActive, category.title.rendered)}
+          onClick={() => handlerRedirect(isActive, category.id)}
         >
           <span>{category.title.rendered}</span>
         </Item>

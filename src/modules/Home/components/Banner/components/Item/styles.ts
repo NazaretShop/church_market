@@ -61,6 +61,7 @@ export const Block = styled.div`
 `;
 
 export const Title = styled.div`
+  ${({ theme }) => theme.text.getLineClamp(2)};
   font-size: 20px;
   font-weight: 500;
   color: #fff;
@@ -68,6 +69,7 @@ export const Title = styled.div`
 `;
 
 export const Description = styled.div`
+  ${({ theme }) => theme.text.getLineClamp(8)};
   font-size: 14px;
   color: #fff;
   text-align: left;

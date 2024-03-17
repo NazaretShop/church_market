@@ -33,7 +33,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
           name: product.product_name,
           price: +product.product_price,
           image: getImage(product?.product_images),
-          total: product.product_price,
+          total: +product.product_price,
         });
       } else {
         enqueueSnackbar(
@@ -57,7 +57,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
       <Content>
         <Preview>
           <img
-            src={getImage(product?.product_images)}
+            src={getImage(product.product_images)}
             alt={product?.product_name}
           />
         </Preview>

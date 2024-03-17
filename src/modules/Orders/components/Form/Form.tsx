@@ -27,18 +27,21 @@ const Form = () => {
         <Container>
           <Input
             placeholder="Прізвище"
+            required
             label="Прізвище"
             {...register("lastName", { required: true })}
             error={errors.lastName}
           />
           <Input
             placeholder="Ім'я"
+            required
             label="Ім'я"
             {...register("firstName", { required: true })}
             error={errors.firstName}
           />
           <Input
             value={phoneNumber}
+            required
             placeholder="+380 (XX) XXX-XX-XX"
             label="Номер телефону"
             {...register("phoneNumber", {

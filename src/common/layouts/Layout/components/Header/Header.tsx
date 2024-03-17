@@ -37,14 +37,14 @@ const Header: FC<IHeaderProps> = ({ categories }) => {
 
   const handlerRedirectToOrder = () => {
     if (basket.length) {
+      push(LINK_TEMPLATES.ORDERS());
+    } else {
       enqueueSnackbar(
-        "Ваш кошик пустий, додайти товар щоб зробити замовлення",
+        "Ваш кошик пустий, додайте товар щоб зробити замовлення",
         {
           variant: "warning",
         }
       );
-      push(LINK_TEMPLATES.ORDERS());
-    } else {
       push(LINK_TEMPLATES.PRODUCTS({}));
     }
   };

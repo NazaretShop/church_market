@@ -9,6 +9,7 @@ export interface IInputProps extends IBaseInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
   id?: string;
+  required?: boolean;
 }
 
 export interface IInputComponentProps extends Omit<IInputProps, "error"> {

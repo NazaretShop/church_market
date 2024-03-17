@@ -37,6 +37,7 @@ const Address = () => {
             valueFieldName: "Description",
             labelFieldName: "Description",
           })}
+          required
           placeholder="Область"
           label="Область"
           registerOptions={register("region", {
@@ -48,6 +49,7 @@ const Address = () => {
           }}
         />
         <Select
+          required
           options={redoArrayInOptions<ISettlementModel>({
             array: cities || [],
             idFieldName: "CityID",
@@ -64,6 +66,7 @@ const Address = () => {
         />
       </Grid>
       <Select
+        required
         options={redoArrayInOptions<IWarehouse>({
           array: warehouses || [],
           idFieldName: "Ref",

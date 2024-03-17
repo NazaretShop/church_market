@@ -1,5 +1,5 @@
 import { renderInputError } from "@/common/helpers/renderInputError";
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { Component, Container, Icon, Label, Message, Wrapper } from "./styles";
 import { IInputProps } from "./types";
 
@@ -11,10 +11,9 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
     label,
     endIcon,
     onClick,
+    required,
     ...rest
   } = props;
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onClickHandler = () => {
     if (typeof onClick === "function") {
@@ -23,14 +22,19 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   };
   return (
     <Wrapper>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label>
+          {label}
+          {required ? "*" : ""}
+        </Label>
+      )}
       <Container>
         <Component
           {...rest}
           isError={!!error}
           ref={ref}
           onClick={onClickHandler}
-          type={isOpen ? "text" : type}
+          type={"text"}
           aria-invalid={!!error}
           haveEndIcon={!!endIcon}
         />

@@ -43,6 +43,8 @@ const Market = () => {
     limit,
     search,
     category,
+    max: +maxPrice,
+    min: +minPrice,
   });
 
   const { data: categories } = useGetCategoriesQuery();
@@ -83,8 +85,6 @@ const Market = () => {
                 value={value}
               />
               <PriceInterval
-                maxValue={String(maxPrice || "")}
-                minValue={String(minPrice || "")}
                 onChangeMaxValue={(e) => onChangeFilterField(e, "maxPrice")}
                 onChangeMinValue={(e) => onChangeFilterField(e, "minPrice")}
               />

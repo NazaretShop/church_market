@@ -11,7 +11,7 @@ const initialState: IInitialMarketStoreProps = {
   page: 1,
   limit: PAGE_LIMIT.desktop,
   category: "",
-  maxPrice: 10000,
+  maxPrice: 100000,
   minPrice: 0,
   isInit: false,
 };

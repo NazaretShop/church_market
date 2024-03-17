@@ -31,6 +31,7 @@ const Select = <T extends object>(props: ISelectProps<T>) => {
     onChange,
     onChangeFullObject,
     registerOptions,
+    required,
     ...rest
   } = props;
   const [isOpen, setIsOpen] = useState(false);
@@ -91,7 +92,12 @@ const Select = <T extends object>(props: ISelectProps<T>) => {
 
   return (
     <Wrapper ref={refWrapper}>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label>
+          {label}
+          {required ? "*" : ""}
+        </Label>
+      )}
       <Container>
         <Input
           {...rest}

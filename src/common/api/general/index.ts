@@ -29,7 +29,7 @@ export const useGetCategoriesQuery = () => {
 
 export const useGetProductsQuery = ({
   limit = 20,
-  max = 10000,
+  max = 100000,
   min = 0,
   page = 1,
   category,

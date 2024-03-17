@@ -6,6 +6,7 @@ export interface ISelectProps<T> extends Omit<IBaseSelectProps, "options"> {
   registerOptions?: UseFormRegisterReturn<string>;
   options: IOption<T>[];
   onChangeFullObject?: (value: T) => void;
+  required?: boolean;
 }
 
 export interface ISelectComponentProps<T>

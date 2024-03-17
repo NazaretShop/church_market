@@ -118,6 +118,12 @@ export const PreviewImage = styled.img`
   height: 100%;
 `;
 
+export const PlayerSlide = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 export const PreviewImageLoader = styled.div`
   flex: 1 1 auto;
   width: 100%;

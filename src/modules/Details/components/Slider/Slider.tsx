@@ -4,21 +4,24 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import VideoPlayer from "../Player/Player";
+import { ControlBar, Player } from "video-react";
+import "video-react/dist/video-react.css";
+import { useAspectRation } from "./hooks";
 import {
   Button,
   ImageItem,
   List,
+  PlayerSlide,
   PreviewImage,
   VideoItem,
   Wrapper,
 } from "./styles";
 import { ISliderImages } from "./types";
-
 const Slider: FC<ISliderImages> = ({ images }) => {
   console.log("images :", images);
   const [activeSlide, setActive] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
+  const aspect = useAspectRation();
 
   const renderSlide = () => {
     return images.map((slide, id) => {
@@ -26,7 +29,11 @@ const Slider: FC<ISliderImages> = ({ images }) => {
       return (
         <SwiperSlide key={id}>
           {!isImage ? (
-            <VideoPlayer link={slide} />
+            <PlayerSlide>
+              <Player src={slide} fluid aspectRatio={aspect}>
+                <ControlBar autoHide={false} />
+              </Player>
+            </PlayerSlide>
           ) : (
             <PreviewImage src={slide} alt="preview" />
           )}

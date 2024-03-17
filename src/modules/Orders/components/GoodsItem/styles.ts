@@ -83,6 +83,7 @@ export const Name = styled.span`
   flex: 1 1 auto;
   font-size: 16px;
   font-weight: 500;
+  word-break: break-word;
   ${({ theme }) => theme.text.getLineClamp(2)};
   @media screen and (max-width: 540px) {
     font-size: 14px;

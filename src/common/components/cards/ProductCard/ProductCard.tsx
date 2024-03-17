@@ -62,7 +62,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
           />
         </Preview>
         <Panel>
-          <Title>{product?.product_name}</Title>
+          <Title title={product?.product_name}>{product?.product_name}</Title>
           <Price>{getReducedNumber(product?.product_price)} грн</Price>
           <Button isFilled={!isAdded} onClick={handlerAdd}>
             {isAdded ? "В кошику" : "Купити"}

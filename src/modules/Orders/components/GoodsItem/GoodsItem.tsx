@@ -1,4 +1,3 @@
-import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { TrashIcon } from "@/common/icons";
 import { useGeneralStore } from "@/common/store";
 import { IGoodsIBaskedModel } from "@/common/types";
@@ -56,7 +55,7 @@ const GoodsItem: FC<IGoodsIBaskedModel> = ({
             </IconButton>
           </Row>
           <EventRow>
-            <Cel>{getReducedNumber(price)} ₴ / шт.</Cel>
+            <Cel>{price} ₴ / шт.</Cel>
 
             <Counter>
               <Button
@@ -79,7 +78,7 @@ const GoodsItem: FC<IGoodsIBaskedModel> = ({
                 step={1}
                 onChange={(e) => {
                   const value = parseInt(e.target.value);
-                  if (!isNaN(value)) {
+                  if (!isNaN(value) && value !== 0 && value > 0) {
                     setCounter(+e.target.value);
                   } else {
                     setCounter(1);
@@ -94,7 +93,7 @@ const GoodsItem: FC<IGoodsIBaskedModel> = ({
               </Button>
             </Counter>
             <Result>
-              <Price>{getReducedNumber(+price * count)} грн</Price>
+              <Price>{+price * count} грн</Price>
             </Result>
           </EventRow>
         </Content>

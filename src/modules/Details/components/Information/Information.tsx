@@ -1,3 +1,4 @@
+import { LINK_TEMPLATES } from "@/common/constants";
 import { getImage } from "@/common/helpers";
 import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { useGeneralStore } from "@/common/store";
@@ -5,6 +6,7 @@ import { IProductModelSecond } from "@/common/types";
 import { Button } from "@/ui-liberty/buttons";
 import { useSnackbar } from "notistack";
 import { FC, MouseEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   BasketAction,
   Category,
@@ -28,6 +30,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
   const addItemBasket = useGeneralStore((state) => state.addBasket);
   const basket = useGeneralStore((state) => state.basket);
   const { enqueueSnackbar } = useSnackbar();
+  const push = useNavigate();
 
   const isAdded = !!basket.some((item) => item.name === product_name);
 
@@ -52,6 +55,8 @@ const Information: FC<Partial<IProductModelSecond>> = ({
           }
         );
       }
+    } else {
+      push(LINK_TEMPLATES.ORDERS());
     }
   };
 

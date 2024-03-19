@@ -49,9 +49,9 @@ const Footer = () => {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href="mailto:nazaretcerkovnyi@gmail.com"
+                    href="mailto:nazaretcerkovnyj@gmail.com"
                   >
-                    nazaretcerkovnyi@gmail.com
+                    nazaretcerkovnyj@gmail.com
                   </a>
                 </Contact>
               </ContactWrapper>

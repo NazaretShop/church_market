@@ -60,7 +60,7 @@ export const Wrapper = styled.div`
     height: fit-content;
     .swiper-slide img {
       max-width: 500px;
-      max-height: 360px;
+      max-height: 80svh;
     }
   }
 `;
@@ -122,6 +122,7 @@ export const PlayerSlide = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  padding-bottom: 40px;
 `;
 
 export const PreviewImageLoader = styled.div`

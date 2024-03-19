@@ -3,7 +3,7 @@ import { IProductButtonProps } from "./types";
 
 export const Wrapper = styled.div`
   ${({ theme }) => theme.flex.center};
-  height: 300px;
+  height: 420px;
   width: 100%;
   background-color: #ffffffff;
   border-radius: 6px;
@@ -55,7 +55,10 @@ export const Wrapper = styled.div`
     }
   }
   @media screen and (max-width: 540px) {
-    height: 260px;
+    height: 360px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 320px;
   }
 `;
 
@@ -65,7 +68,6 @@ export const Content = styled.div`
   inset: 3px;
   border-radius: 3px;
   overflow: hidden;
-  background-color: #f0f0f0ff;
 `;
 
 export const Panel = styled.div`
@@ -86,7 +88,7 @@ export const Panel = styled.div`
 
 export const PanelLoader = styled(Panel)`
   ${({ theme }) => theme.animation.shine}
-`
+`;
 
 export const Flex = styled.div`
   ${({ theme }) => theme.flex.column};
@@ -103,6 +105,9 @@ export const Title = styled.span`
   color: ${({ theme }) => theme.colors.root};
   width: 100%;
   margin: auto;
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 export const Price = styled.span`
@@ -114,8 +119,10 @@ export const Price = styled.span`
 export const Preview = styled.div`
   width: 100%;
   flex: 1 1 auto;
-  padding: 16px;
+  padding: 4px;
+  background-color: #ffffff;
   overflow: hidden;
+  border-bottom: 1px solid #cccccc65;
   img {
     transition: all 0.4s ease-in-out;
     object-fit: contain;

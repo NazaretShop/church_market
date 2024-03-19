@@ -17,8 +17,8 @@ import {
   Wrapper,
 } from "./styles";
 import { ISliderImages } from "./types";
+
 const Slider: FC<ISliderImages> = ({ images }) => {
-  console.log("images :", images);
   const [activeSlide, setActive] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
   const aspect = useAspectRation();
@@ -28,15 +28,15 @@ const Slider: FC<ISliderImages> = ({ images }) => {
       const isImage = slide?.split(".").pop() !== "mp4";
       return (
         <SwiperSlide key={id}>
-          {!isImage ? (
-            <PlayerSlide>
+          <PlayerSlide>
+            {!isImage ? (
               <Player src={slide} fluid aspectRatio={aspect}>
                 <ControlBar autoHide={false} />
               </Player>
-            </PlayerSlide>
-          ) : (
-            <PreviewImage src={slide} alt="preview" />
-          )}
+            ) : (
+              <PreviewImage src={slide} alt="preview" />
+            )}
+          </PlayerSlide>
         </SwiperSlide>
       );
     });

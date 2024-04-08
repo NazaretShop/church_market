@@ -1,11 +1,14 @@
 import { useGetProductsQuery } from "@/common/api/general";
 import { TitleArticle } from "@/common/components/articles";
 import { LoaderProductCard, ProductCard } from "@/common/components/cards";
-import { Container, Wrapper } from "./styles";
+import { LINK_TEMPLATES } from "@/common/constants";
+import { Button } from "@/ui-liberty/buttons";
+import { useNavigate } from "react-router-dom";
+import { ActionContainer, Container, Wrapper } from "./styles";
 
 const Grid = () => {
   const { data: goods, isLoading } = useGetProductsQuery({ limit: 10 });
-
+  const push = useNavigate();
   const renderGrid = () => {
     return goods?.items?.map((item) => (
       <ProductCard product={item} key={item.id} />
@@ -27,6 +30,16 @@ const Grid = () => {
           ? [...Array(10)].map((_, i) => <LoaderProductCard key={i} />)
           : renderGrid()}
       </Container>
+      <ActionContainer>
+        <Button
+          onClick={() => {
+            push(LINK_TEMPLATES.PRODUCTS({}));
+            window.scrollTo(0, 0);
+          }}
+        >
+          Показати більше
+        </Button>
+      </ActionContainer>
     </Wrapper>
   );
 };

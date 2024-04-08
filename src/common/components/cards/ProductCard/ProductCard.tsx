@@ -1,6 +1,5 @@
 import { LINK_TEMPLATES } from "@/common/constants";
 import { getImage } from "@/common/helpers";
-import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { useGeneralStore } from "@/common/store";
 import { useSnackbar } from "notistack";
 import { FC, MouseEvent } from "react";
@@ -63,7 +62,7 @@ const ProductCard: FC<IProductCardProps> = ({ product }) => {
         </Preview>
         <Panel>
           <Title title={product?.product_name}>{product?.product_name}</Title>
-          <Price>{getReducedNumber(product?.product_price)} грн</Price>
+          <Price>{product?.product_price} грн</Price>
           <Button isFilled={!isAdded} onClick={handlerAdd}>
             {isAdded ? "В кошику" : "Купити"}
           </Button>

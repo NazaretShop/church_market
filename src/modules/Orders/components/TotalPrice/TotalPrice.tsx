@@ -1,5 +1,4 @@
 import imageFrame from "@/assets/images/frame.webp";
-import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { Button } from "@/ui-liberty/buttons";
 import { FC } from "react";
 import { Decoration, Line, Row, Sticky, Title, Wrapper } from "./styles";
@@ -12,8 +11,8 @@ const TotalPrice: FC<ITotalPriceProps> = ({ countGoods, totalPrice }) => (
       <Title>Разом</Title>
       <Line />
       <Row>
-        <span> {getReducedNumber(countGoods)} товари на суму</span>
-        <span>{getReducedNumber(totalPrice)}грн</span>
+        <span> {countGoods} товари на суму</span>
+        <span>{totalPrice}грн</span>
       </Row>
       <Row>
         <span>

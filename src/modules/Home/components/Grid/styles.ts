@@ -52,3 +52,17 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const ActionContainer = styled.div`
+  ${({ theme }) => theme.flex.center};
+  width: 100%;
+  button {
+    height: 100%;
+    padding: 14px 28px;
+    background-color: #fff;
+    border-radius: 6px;
+    color: #efb821;
+    border: 1px solid #78787819;
+    box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.03);
+  }
+`;

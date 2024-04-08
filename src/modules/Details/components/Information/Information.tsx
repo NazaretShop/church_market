@@ -1,6 +1,5 @@
 import { LINK_TEMPLATES } from "@/common/constants";
 import { getImage } from "@/common/helpers";
-import getReducedNumber from "@/common/helpers/getReducedNumber";
 import { useGeneralStore } from "@/common/store";
 import { IProductModelSecond } from "@/common/types";
 import { Button } from "@/ui-liberty/buttons";
@@ -79,7 +78,7 @@ const Information: FC<Partial<IProductModelSecond>> = ({
           <Title>{product_name}</Title>
         </div>
         <List>{renderOptions()}</List>
-        <Price>{getReducedNumber(product_price)} грн</Price>
+        <Price>{product_price} грн</Price>
       </Content>
       <BasketAction>
         <Button variant={isAdded ? "outline" : "filled"} onClick={handlerAdd}>

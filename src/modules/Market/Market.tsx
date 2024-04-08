@@ -48,7 +48,7 @@ const Market = () => {
   });
 
   const { data: categories } = useGetCategoriesQuery();
-
+  const [total, setTotal] = useState(goods?.total || 0);
   const onChangeFilterField = useMarketStore.useOnChangeFilterFieldHandler();
   const [value, setValue] = useState(search);
   const chooseCategory = categories?.find((item) => +item.id === +category)
@@ -65,13 +65,19 @@ const Market = () => {
 
   useEffect(() => {
     if (isInit) {
-      push(LINK_TEMPLATES.PRODUCTS({ search: value, category, page }));
+      push(LINK_TEMPLATES.PRODUCTS({ search: value, category, page: 1 }));
     }
   }, [debouncedValue]);
 
   useEffect(() => {
     setValue(search);
   }, [isInit]);
+
+  useEffect(() => {
+    if (goods) {
+      setTotal(goods.total || 0);
+    }
+  }, [goods?.total]);
 
   return (
     <Wrapper>
@@ -120,7 +126,7 @@ const Market = () => {
               push(LINK_TEMPLATES.PRODUCTS({ search, category, page }));
             }}
             pageSize={limit}
-            totalCount={goods?.total || 0}
+            totalCount={total}
           />
         </Container>
       </Content>

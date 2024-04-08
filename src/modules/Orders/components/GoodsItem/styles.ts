@@ -52,8 +52,8 @@ export const Preview = styled.img`
   height: 100%;
   width: 100%;
   object-fit: contain;
-  background-color: #eeeeee;
   border-radius: 8px;
+  border: 1px solid #cccccc89;
   padding: 8px;
 `;
 
